@@ -1,6 +1,6 @@
 <template>
-  <div class="register">
-    <v-bar title="注册">
+  <div class="detail">
+    <v-bar title="投资详情">
       <div slot="left" class="item" @click="$router.go(-1)">
         <i class="icon"></i>
         <span class="text">返回</span>
@@ -11,16 +11,14 @@
 </template>
 <script>
   export default {
-    
+    created () {
+      console.log(this.$route.query)
+    }
   }
 </script>
 <style lang="stylus" scoped>
-  .register {
-    position: absolute
-    left: 0
-    top: 0
-    bottom: 0
-    right: 0
+  .detail {
+    font-size: 32px
     .item {
       display: flex
       padding-left: (30rem/20)

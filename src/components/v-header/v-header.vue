@@ -15,34 +15,36 @@
 <style lang="stylus" scoped>
   .header {
     position: relative
-    height: 135px
+    height: (135rem/20)
     text-align: center
-    padding-top: 40px
+    padding-top: (40rem/20)
     box-sizing: border-box
-    border-bottom: 3px solid #cfced3
+    border-bottom: (3rem/20) solid #cfced3
    .logo {
      display: inline-block
-     width: 312px
-     height: 59px
-     text-indent: -9999px
+     width: (312rem/20)
+     height: (59rem/20)
+     text-indent: -(9999rem/20)
      background: url(../../assets/imgs/icon.png) 0 0 no-repeat
+     background-size: (1112rem/20) (859rem/20)
    }
    .download {
      position: absolute
-     right: 45px
-     top: 40px
-     width: 186px
-     height: 66px
+     right: (45rem/20)
+     top: (40rem/20)
+     width: (186rem/20)
+     height: (66rem/20)
      .download-link {
        display: inline-block
-       height: 66px
+       vertical-align: top
+       height: (66rem/20)
        width: 100%
        background: #ee4634
-       border-radius: 14px
+       border-radius: (14rem/20)
        text-align: center
-       line-height: 66px
+       line-height: (66rem/20)
        color: #ffffff
-       font-size: 38px
+       font-size: (38rem/20)
      }
    }
    

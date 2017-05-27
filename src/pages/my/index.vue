@@ -1,12 +1,12 @@
 <template>
-  <div class="register">
-    <v-bar title="注册">
+  <div class="my">
+     <v-bar title="用户详情">
       <div slot="left" class="item" @click="$router.go(-1)">
         <i class="icon"></i>
         <span class="text">返回</span>
       </div>
     </v-bar>
-    等待开发中。。。
+    等待开发中
   </div>
 </template>
 <script>
@@ -15,12 +15,7 @@
   }
 </script>
 <style lang="stylus" scoped>
-  .register {
-    position: absolute
-    left: 0
-    top: 0
-    bottom: 0
-    right: 0
+  .my {
     .item {
       display: flex
       padding-left: (30rem/20)

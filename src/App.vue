@@ -5,14 +5,12 @@
 </template>
 
 <script>
-  import vBar from './components/v-bar/v-bar'
   import vHeader from './components/v-header/v-header'
   import vFooter from './components/v-footer/v-footer'
   import vContent from './components/v-content/v-content'
   export default {
     name: 'app',
     components: {
-      vBar,
       vHeader,
       vContent,
       vFooter
@@ -26,5 +24,6 @@
     display: inline-block
     overflow: hidden
     background: url(./assets/imgs/icon.png)
+    background-size: (1112rem/20) (859rem/20)
   }
 </style>

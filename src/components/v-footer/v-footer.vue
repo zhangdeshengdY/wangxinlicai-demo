@@ -22,30 +22,30 @@
     width: 100%
     left: 0
     bottom: 0
-    height: 150px
-    padding-top: 13px
-    border-top: 3px solid #d9d9d9
+    height: (150rem/20)
+    padding-top: (13rem/20)
+    border-top: (3rem/20) solid #d9d9d9
     background-color: #fff
     .foot-item {
       width: 50%
       text-align:center
       .icon {
-        width: 70px
-        height: 70px
+        width: (70rem/20)
+        height: (70rem/20)
       }
       .text {
         display: block
-        font-size: 36px
+        font-size: (36rem/20)
       }
     }
     .btn-home {
       .icon {
-        background-position: 0 -203px
+        background-position: 0 (-203rem/20)
       }
     }
     .btn-my {
       .icon {
-        background-position: 0 -273px
+        background-position: 0 (-273rem/20)
       }
     }
 

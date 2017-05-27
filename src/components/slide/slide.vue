@@ -10,7 +10,7 @@
 </script>
 <style lang="stylus" scoped>
   .slide {
-    height: 330px
+    height: (330rem/20)
     background: url(./imgs/banner_1.jpg)
     background-size: 100% 100%
     

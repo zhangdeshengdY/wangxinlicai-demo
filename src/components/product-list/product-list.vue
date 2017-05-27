@@ -34,6 +34,7 @@
               剩55,636,53元
             </div>
           </div>
+          <router-link to="deal/detail?dealid=123" class="detail-link"></router-link>
         </div>
         <division></division>
       </li>
@@ -70,6 +71,7 @@
               剩55,636,53元
             </div>
           </div>
+          <router-link to="deal/detail?dealid=234" class="detail-link"></router-link>
         </div>
         <division></division>
       </li>
@@ -158,25 +160,26 @@
 </script>
 <style lang="stylus" scoped>
   .product-item {
-    padding: 42px 45px 15px
+    position: relative
+    padding: (42rem/20) (42rem/20) (15rem/20)
     .title {
       display: flex
       .tag {
         align-self: center
-        width: 180px
-        height: 45px
-        padding: 0 16px
-        margin-right: 30px
-        font-size: 28px
-        line-height: 45px
+        width: (180rem/20)
+        height: (45rem/20)
+        padding: 0 (16rem/20)
+        margin-right: (30rem/20)
+        font-size: (28rem/20)
+        line-height: (45rem/20)
         color: #ee4634
         text-align: center
-        border: 3px solid #ee4634
-        border-radius: 24px
+        border: (3rem/20) solid #ee4634
+        border-radius: (24rem/20)
       }
       .kind {
         align-self: center
-        font-size: 44px
+        font-size: (44rem/20)
         color: #000000
       }
     }
@@ -184,39 +187,39 @@
       display: flex
       justify-content: space-between
       .desc {
-        height: 70px
-        line-height: 70px
-        font-size: 38px
+        height: (70rem/20)
+        line-height: (70rem/20)
+        font-size: (38rem/20)
         color: #909090
       }
       .num {
-        height: 79px
-        line-height: 79px
-        font-size: 32px
+        height: (79rem/20)
+        line-height: (79rem/20)
+        font-size: (32rem/20)
         color: #ee4634
       }
       .num-size {
-        font-size: 58px
+        font-size: (58rem/20)
         font-weight: 700
       }
       .buy-btn {
-        padding-top: 60px
+        padding-top: (60rem/20)
       }
       .buy-btn-link {
         display: inline-block
-        width: 216px
-        height: 84px
-        line-height: 84px
+        width: (216rem/20)
+        height: (84rem/20)
+        line-height: (84rem/20)
         text-align: center
-        font-size: 42px
+        font-size: (42rem/20)
         color: #fff
-        border-radius: 40px
+        border-radius: (40rem/20)
         background-color: #ee4634
       }
     } 
     .remain-bar {
-      height: 3px
-      margin-top: 30px
+      height: (3rem/20)
+      margin-top: (30rem/20)
       background: #d9d9d9
       .actually-bar {
         height: 100%
@@ -227,10 +230,17 @@
     .attach {
       display: flex
       justify-content: space-between
-      height: 114px
-      line-height: 114px
+      height: (114rem/20)
+      line-height: (114rem/20)
       color: #909090
-      font-size: 38px
+      font-size: (38rem/20)
+    }
+    .detail-link {
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
     }
   }
 </style>

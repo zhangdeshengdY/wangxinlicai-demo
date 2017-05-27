@@ -1,6 +1,6 @@
-# wangxinlicai-demo
+﻿# wangxinlicai-demo
 
-> A Vue.js project
+> vue构建的webapp单页应用
 
 ## Build Setup
 
@@ -24,4 +24,20 @@ npm run unit
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 功能
+- [x] 首页
+- [ ] 详情页
+- [ ] 登录页
+- [ ] 注册页
+- [ ] 个人信息页
+- [ ] 路由数据存储，前进后退不在重新发送请求
+- [ ] 在路由切换时，滚动条位置还原
+- [ ] 下拉刷新
+- [x] 拆分页面组件和功能组件 
+- [ ] 轮播图组件编写
+- [x] rem适配
+- [ ] 优化
+
+
+
+

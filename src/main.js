@@ -3,11 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import vscroll from 'v-scroll'
-
+import vscroll from './directive/v-scroll.js'
+import components from './components/index'
 Vue.use(vscroll)
 Vue.config.productionTip = false
 
+for( var key in components){
+  Vue.component(`v${key}`, components[key])
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

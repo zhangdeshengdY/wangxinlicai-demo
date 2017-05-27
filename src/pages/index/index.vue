@@ -51,7 +51,6 @@
   </div>
 </template>
 <script>
-  import vBar from '../../components/v-bar/v-bar'
   import vHeader from '../../components/v-header/v-header'
   import vFooter from '../../components/v-footer/v-footer'
   import vContent from '../../components/v-content/v-content'
@@ -65,7 +64,8 @@
     data () {
       return {
         homeScrollOpts: {
-          probeType: 3
+          probeType: 3,
+          click: true
         },
         scroll: null,
         complete: true,
@@ -88,16 +88,10 @@
       },
       touchendFn() {
         if (!this.complete) {
-          setTimeout(() => {
-            
-          },0)
-          this.scroll.disable()
-          this.scroll.scrollTo(0, 140, 200)
         }
       }
     },
     components: {
-      vBar,
       vHeader,
       vContent,
       vFooter,
@@ -113,7 +107,7 @@
     left: 0
     top: 0
     right: 0
-    bottom: 153px
+    bottom: (153rem/20)
     background-color: #f5f5f9
     .scroll-inner {
       position: relative
@@ -122,17 +116,17 @@
         position: absolute
         width: 100%
         left: 0
-        top: -80px
-        height: 80px
-        line-height: 80px
+        top: -(80rem/20)
+        height: (80rem/20)
+        line-height: (80rem/20)
         text-align:center
       }
     }
   }
   .top-nav {
     display: flex
-    height: 150px
-    border-top: 3px solid #cfced3
+    height: (150rem/20) 
+    border-top: (3rem/20) solid #cfced3
     .nav-item {
       width: 50%
       display: flex
@@ -140,84 +134,80 @@
       justify-content: center
       .icon {
         align-self: center
-        width: 64px
-        height: 72px
-        margin-right: 47px
+        width: (64rem/20)
+        height: (72rem/20)
+        margin-right: (47rem/20)
         
       }
       .text {
         align-self: center
-        font-size: 48px
+        font-size: (48rem/20)
         color: #000000
       }
     }
     .register {
       .icon {
-        background-position: 0 -59px
+        background-position: 0 -(59rem/20)
       }
     }
     .login {
       .icon {
-        background-position: 0 -131px
+        background-position: 0 -(131rem/20)
       }
     }
   }
   .list-container {
     .list-container-title {
-      height: 123px
-      padding: 0 45px
-      line-height: 123px
-      font-size: 44px
+      height: (123rem/20)
+      padding: 0 (45rem/20)
+      line-height: (123rem/20)
+      font-size: (44rem/20)
       color: #000000
-      border-bottom: 3px solid #d9d9d9
+      border-bottom: (3rem/20) solid #d9d9d9
       
     }
     .btn-list {
       display: block
-      height: 120px
-      line-height: 120px
+      height: (120rem/20)
+      line-height: (120rem/20)
       text-align: center
-      font-size: 44px
+      font-size: (44rem/20)
       color: #151515
     }
   }
   .about {
     .about-title {
-      height: 123px
-      line-height: 123px
-      padding: 0 45px
-      font-size: 44px
+      height: (123rem/20)
+      line-height: (123rem/20)
+      padding: 0 (45rem/20)
+      font-size: (44rem/20)
       color: #000000
-      border-bottom: 3px solid #d9d9d9
+      border-bottom: (3rem/20) solid #d9d9d9
     }
     .about-item {
       display: flex
-      padding: 45px
+      padding: (45rem/20)
       .about-icon-wrapper {
-        width: 169px
-        margin-right: 32px
+        width: (169rem/20)
+        margin-right: (32rem/20)
         .icon {
-          width: 169px
-          height: 168px
-          background-position: -312px 0
+          width: (169rem/20)
+          height: (168rem/20)
+          background-position: -(312rem/20) 0
         }
       }
       .info-title {
-        height: 65px
-        line-height: 65px
-        font-size:  40px
+        height: (65rem/20)
+        line-height: (65rem/20)
+        font-size:  (40rem/20)
         color: #000000
       }
       .info-text {
         flex: 1
-        line-height: 54px
-        font-size: 36px
+        line-height: (54rem/20)
+        font-size: (36rem/20)
         color: #909090
       }
     }
-  }
-  .test {
-    height: 500px
-    background-color: red
   }
 </style>

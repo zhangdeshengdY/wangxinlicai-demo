@@ -5,7 +5,10 @@ import App from './App'
 import router from './router'
 import vscroll from './directive/v-scroll.js'
 import components from './components/index'
+import vueTap from 'v-tap';
+
 Vue.use(vscroll)
+Vue.use(vueTap);
 Vue.config.productionTip = false
 
 for( var key in components){

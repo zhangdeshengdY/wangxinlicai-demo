@@ -1,13 +1,15 @@
 <template>
   <div class="footer">
-    <router-link class="foot-item btn-home" to="/">
-      <i class="icon"></i>
-      <span class="text current">首页</span>
-    </router-link>
-    <router-link class="foot-item btn-my" to="/my">
-      <i class="icon"></i>
-      <span class="text">我的</span>
-    </router-link>
+    <slot>
+      <router-link class="foot-item btn-home" to="/">
+        <i class="icon"></i>
+        <span class="text current">首页</span>
+      </router-link>
+      <router-link class="foot-item btn-my" to="/my">
+        <i class="icon"></i>
+        <span class="text">我的</span>
+      </router-link>
+    </slot>
   </div>
 </template>
 <script>
@@ -23,12 +25,12 @@
     left: 0
     bottom: 0
     height: (150rem/20)
-    padding-top: (13rem/20)
     border-top: (3rem/20) solid #d9d9d9
     background-color: #fff
     .foot-item {
       width: 50%
       text-align:center
+      padding-top: (13rem/20)
       .icon {
         width: (70rem/20)
         height: (70rem/20)

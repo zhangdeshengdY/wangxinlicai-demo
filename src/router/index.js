@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../pages/index/index'
-import Login from '../pages/login/login'
-import Register from '../pages/register/register'
+import Login from '../pages/login/index'
+import Register from '../pages/register/index'
 import Detail from '../pages/detail/index'
 import My from '../pages/my/index'
 Vue.use(Router)

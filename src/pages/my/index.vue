@@ -1,7 +1,7 @@
 <template>
   <div class="my">
      <v-bar title="用户详情">
-      <div slot="left" class="item" @click="$router.go(-1)">
+      <div slot="left" class="item" v-tap="{methods: back}">
         <i class="icon"></i>
         <span class="text">返回</span>
       </div>
@@ -11,7 +11,11 @@
 </template>
 <script>
   export default {
-    
+    methods: {
+      back () {
+        this.$router.go(-1)
+      }
+    }
   }
 </script>
 <style lang="stylus" scoped>

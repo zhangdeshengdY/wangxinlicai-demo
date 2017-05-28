@@ -3,11 +3,10 @@
     <div class="scroll-inner" ref="scroller">
       <div class="drop-refresh">
         <div class="refresh" ref="refresh">下拉刷新</div>
-        <!--<div class="lose-hand" v-show="!complete">松手刷新数据</div>-->
       </div>
       <v-header></v-header>
       <v-content>
-        <slide></slide>
+        <v-slide></v-slide>
         <nav class="top-nav">
           <router-link class="register nav-item" to="/register">
             <i class="icon"></i>
@@ -18,12 +17,32 @@
             <span class="text">登录</span>
           </router-link>
         </nav>
-        <division></division>
+        <v-division></v-division>
         <div class="list-container">
           <header class="list-container-title">专享</header>
-          <product-list></product-list>
+          <!--<product-list></product-list>-->
+          <div class="product-list-wrapper">
+            <ul calss="product-list">
+              <li class="v-product-item-wrapper">
+                <v-product-item></v-product-item>
+                <v-division></v-division>
+              </li>
+              <li class="v-product-item-wrapper">
+                <v-product-item></v-product-item>
+                <v-division></v-division>
+              </li>
+              <li class="v-product-item-wrapper">
+                <v-product-item></v-product-item>
+                <v-division></v-division>
+              </li>
+              <li class="v-product-item-wrapper">
+                <v-product-item></v-product-item>
+                <v-division></v-division>
+              </li>
+            </ul>
+          </div>
           <router-link to="/list" class="btn-list">查看全部项目</router-link>
-          <division></division>
+          <v-division></v-division>
         </div>
         <div class="about">
             <header class="about-title">
@@ -51,13 +70,6 @@
   </div>
 </template>
 <script>
-  import vHeader from '../../components/v-header/v-header'
-  import vFooter from '../../components/v-footer/v-footer'
-  import vContent from '../../components/v-content/v-content'
-  import slide from '../../components/slide/slide'
-  import division from '../../components/other/division'
-  import productList from '../../components/product-list/product-list'
-  import Velocity from 'velocity-animate'
 
   const REFRESHDIS = 140
   export default {
@@ -81,23 +93,12 @@
             this.complete = false
             this.$refs.refresh.innerHTML = "松手刷新数据"
           }
-          // if (!this.complete && (pos.y>130&&pos.y<150)) {
-          //   this.scroll.disable()
-          // }
         })
       },
       touchendFn() {
         if (!this.complete) {
         }
       }
-    },
-    components: {
-      vHeader,
-      vContent,
-      vFooter,
-      slide,
-      division,
-      productList
     }
   }
 </script>

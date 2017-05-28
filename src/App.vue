@@ -5,16 +5,8 @@
 </template>
 
 <script>
-  import vHeader from './components/v-header/v-header'
-  import vFooter from './components/v-footer/v-footer'
-  import vContent from './components/v-content/v-content'
   export default {
     name: 'app',
-    components: {
-      vHeader,
-      vContent,
-      vFooter
-    }
   }
 </script>
 

@@ -16,6 +16,8 @@
           <input type="text" class="user-name info-item" placeholder="手机号" name="user">
           <input type="password" class="password info-item" placeholder="登录密码" name="password">
         </div>
+        <button class="submit disable-submit">登录</button>
+        <p class="forget-link">忘记密码？</p>
     </div>
   </div>
 </template>
@@ -86,7 +88,29 @@
            border-bottom: (3rem/20) solid #dbdbdb
          }
        }
+       .submit {
+          display: block
+          width: 100%
+          margin-top: (60rem/20)
+          line-height: (114rem/20)
+          font-size: 54px
+          font-weight: 700
+          background-color: #ee4634
+          color: #fff
+        }
+        .disable-submit {
+          background-color: #f9aeac
+          color: #f8d2d2
+        }
+        .forget-link {
+          text-align: center
+          line-height: (120rem/20)
+          font-size: (44rem/20)
+          color: #5ca9e4
+        }
      }
+  
+  
   }
   
 </style>

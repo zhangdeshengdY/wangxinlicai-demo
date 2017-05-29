@@ -15,12 +15,6 @@
         })
 
         el.scroll = new BScroll(el, opts)
-        el.scroll.on('destroy', function () {
-            console.log(1)
-            // setTimeout(function (){
-            //     el.scroll = new BScroll(el, opts)
-            // },0)
-        })
         if(binding.value&&({}.toString.call(binding.value.method) === "[object Function]")){
             method = binding.value.method
             method.call(vnode.context, el.scroll)

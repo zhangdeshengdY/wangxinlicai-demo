@@ -1,20 +1,39 @@
 <template>
   <div class="footer">
-    <slot>
-      <router-link class="foot-item btn-home" to="/">
-        <i class="icon"></i>
-        <span class="text current">首页</span>
-      </router-link>
-      <router-link class="foot-item btn-my" to="/my">
-        <i class="icon"></i>
-        <span class="text">我的</span>
-      </router-link>
-    </slot>
+     <slot>
+        <a class="foot-item btn-home" :class="{current: choosen === home }" v-tap="{methods: toHome}">
+          <i class="icon"></i>
+          <span class="text">首页</span>
+        </a>
+        <a class="foot-item btn-my" :class="{current: choosen === my}" v-tap="{methods: toMy}">
+          <i class="icon"></i>
+          <span class="text">我的</span>
+        </a>
+     </slot>
   </div>
 </template>
-<script>
+<script>  
   export default {
-    
+    props: {
+      choosen: {
+        type: String,
+        default: ''
+      }
+    },
+    data () {
+      return {
+        home: 'home',
+        my: 'my'
+      }
+    },
+    methods:　{
+      toHome () {
+        this.$router.push('/')
+      },
+      toMy () {
+        this.$router.push('/my')
+      }
+    }
   }
 </script>
 <style lang="stylus" scoped>
@@ -42,7 +61,13 @@
     }
     .btn-home {
       .icon {
+        background-position: 0 (-415rem/20)
+      }
+      &.current .icon {
         background-position: 0 (-203rem/20)
+      }
+      &.current .text {
+        color: #ee4634
       }
     }
     .btn-my {

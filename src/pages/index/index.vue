@@ -23,20 +23,8 @@
           <!--<product-list></product-list>-->
           <div class="product-list-wrapper">
             <ul calss="product-list">
-              <li class="v-product-item-wrapper">
-                <v-product-item></v-product-item>
-                <v-division></v-division>
-              </li>
-              <li class="v-product-item-wrapper">
-                <v-product-item></v-product-item>
-                <v-division></v-division>
-              </li>
-              <li class="v-product-item-wrapper">
-                <v-product-item></v-product-item>
-                <v-division></v-division>
-              </li>
-              <li class="v-product-item-wrapper">
-                <v-product-item></v-product-item>
+              <li class="v-product-item-wrapper" v-for="deal in deals">
+                <v-product-item :deal="deal"></v-product-item>
                 <v-division></v-division>
               </li>
             </ul>
@@ -66,15 +54,22 @@
         </div>
       </v-content>
     </div>
-    <v-footer></v-footer>
+    <v-footer choosen="home"></v-footer>
   </div>
 </template>
 <script>
-
-  const REFRESHDIS = 140
+  import util from 'util'
+  import routeData from 'route-data'
+  import {mapState} from 'vuex'
+  const REFRESHDIS = window.innerWidth/10
   export default {
-    data () {
+    mixins: [routeData],
+    created () {
+      this.reqDeals()
+    },
+    routeData () {
       return {
+        deals: [],
         homeScrollOpts: {
           probeType: 3,
           click: true
@@ -88,17 +83,49 @@
     methods: {
       homeScrollFn (scroll) {
         this.scroll = scroll
+        scroll.on('touchend', (pos) => {
+          if(pos.y > REFRESHDIS){
+            scroll.setDropFlag(true)
+            scroll.scrollTo(0, REFRESHDIS, 200)
+            this.$refs.refresh.innerHTML = '松手刷新'
+            util.post('/deal', {}, (data) => {
+              var data = JSON.parse(data)
+              setTimeout(() => {
+                scroll.setDropFlag(false)
+                scroll.scrollTo(0, 0, 200)
+                this.$refs.refresh.innerHTML = '下拉刷新'
+                this.data = data.deals  
+              }, 200)
+            }, (err) => {
+              console.log(err)
+            })
+          }
+        })
         scroll.on('scroll', (pos) => {
-          if (pos.y > REFRESHDIS) {
-            this.complete = false
-            this.$refs.refresh.innerHTML = "松手刷新数据"
+          if(pos.y <  0) {
+            scroll.setDropFlag(false)
           }
         })
       },
       touchendFn() {
         if (!this.complete) {
         }
+      },
+      reqDeals () {
+        util.post('/deal', {page: 1, count: 5}, (data) => {
+          var data = JSON.parse(data)
+          this.deals = data.data
+        }, (err) => {
+          console.log(err)
+        })
       }
+    },
+    computed: {
+      ...mapState({
+        user: (state) => {
+          return state.user
+        }
+      })
     }
   }
 </script>
@@ -209,6 +236,32 @@
         font-size: (36rem/20)
         color: #909090
       }
+    }
+  }
+  .refresh {
+    font-size: (36rem/20)
+  }
+  .foot-item {
+    width: 50%
+    text-align:center
+    padding-top: (13rem/20)
+    .icon {
+      width: (70rem/20)
+      height: (70rem/20)
+    }
+    .text {
+      display: block
+      font-size: (36rem/20)
+    }
+  }
+  .btn-home {
+    .icon {
+      background-position: 0 (-203rem/20)
+    }
+  }
+  .btn-my {
+    .icon {
+      background-position: 0 (-273rem/20)
     }
   }
 </style>

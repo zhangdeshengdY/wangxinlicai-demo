@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <v-bar title="登录" class="bar">
-      <div slot="left" class="item" v-tap="{methods: back}">
+      <div slot="left" class="item text" v-tap="{methods: back}">
         <i class="icon"></i>
         <span class="text">返回</span>
       </div>
@@ -27,6 +27,9 @@
       back () {
         this.$router.go(-1)
       }
+    },
+    methods: {
+      
     }
   }
 </script>
@@ -43,14 +46,14 @@
       padding-left: (30rem/20)
       .icon {
         align-self: center
-        width: 27px
-        height: 51px
+        width: (27rem/20)
+        height: (51rem/20)
         background-position: 0 (-343rem/20)
       }
       .text {
         align-self: center
         padding-left: (17rem/20)
-        font-size: 44px
+        font-size: (44rem/20)
       }
     }
     .welcome-banner {
@@ -60,7 +63,7 @@
      .login-tip {
        height: (138rem/20)
        line-height: (138rem/20)
-       font: (40rem/20)
+       font-size: (40rem/20)
        color: #909090
        text-align: right
        .register-link {
@@ -93,7 +96,7 @@
           width: 100%
           margin-top: (60rem/20)
           line-height: (114rem/20)
-          font-size: 54px
+          font-size: (54rem/20)
           font-weight: 700
           background-color: #ee4634
           color: #fff

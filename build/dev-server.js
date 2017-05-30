@@ -9,7 +9,9 @@ var opn = require('opn')
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
+var bodyParser = require('body-parser')
 var proxyMiddleware = require('http-proxy-middleware')
+var data = require('../static/data.json')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
@@ -23,6 +25,30 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.post('/deal', function (req, res) {
+  var queryObj = req.body
+  var deals = data.deals
+  var ori = (queryObj.page-1)*queryObj.count 
+  var end = (queryObj.page)*queryObj.count
+  var selected = deals.slice(ori, end)
+  res.json({
+    status: 0,
+    data: selected
+  })
+})
+
+app.post('/deal/detail', function (req, res) {
+  var deal = data.deals.filter( deal => deal.dealid == req.body.dealid)[0]
+  res.json({
+    status: 0,
+    deal
+  })
+})
+
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {

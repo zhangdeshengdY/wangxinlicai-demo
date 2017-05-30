@@ -1,5 +1,5 @@
  var vscroll = {}
-  var BScroll = require('better-scroll')
+  var ZScroll = require('z-scroll')
   vscroll.install = function (Vue) {
       Vue.directive('scroll', {
         inserted(el, binding, vnode){
@@ -14,7 +14,7 @@
             ev.preventDefault()
         })
 
-        el.scroll = new BScroll(el, opts)
+        el.scroll = new ZScroll(el, opts)
         if(binding.value&&({}.toString.call(binding.value.method) === "[object Function]")){
             method = binding.value.method
             method.call(vnode.context, el.scroll)

@@ -1,40 +1,48 @@
 <template>
-  <div class="detail">
-    <v-bar title="投资详情">
-      <div slot="left" class="item" v-tap="{methods: back}">
-        <i class="icon"></i>
-        <span class="text">返回</span>
-      </div>
-    </v-bar>
-    <v-product-item>
-      <div slot="link"></div>  <!--替换router-link标签， 使之不能点击-->
-      <div slot="item-attach" class="item-attach">
-        <div class="attach-inner">
-          <div class="line"></div>
-          <div class="time-line">
-            <div class="publish">
-              <div class="display-title">发布日</div>
-              <div class="circle notice-color"></div>
-              <p class="display-time">2017-05-27</p>
-            </div>
-            <div class="dest">
-              <div class="display-title">预计起息日</div>
-              <div class="circle notice-color"></div>
-              <p class="display-time">2017-05-31</p>
-              <p class="remain-time notice-color">剩余4天12时41分</p>
+  <div class="detail" v-scroll="{opts: scrollOpt, method: scrollFn}">
+    <div class="scroller">
+      <v-bar title="投资详情">
+        <div slot="left" class="item" v-tap="{methods: back}">
+          <i class="icon"></i>
+          <span class="text">返回</span>
+        </div>
+      </v-bar>
+      <v-product-item :deal="deal">
+        <div slot="link"></div>  <!--替换router-link标签， 使之不能点击-->
+        <div slot="item-attach" class="item-attach">
+          <div class="attach-inner">
+            <div class="line"></div>
+            <div class="time-line">
+              <div class="publish">
+                <div class="display-title">发布日</div>
+                <div class="circle notice-color"></div>
+                <p class="display-time">{{deal.publish}}</p>
+              </div>
+              <div class="dest">
+                <div class="display-title">预计起息日</div>
+                <div class="circle notice-color"></div>
+                <p class="display-time">{{deal.evaluate}}</p>
+                <p class="remain-time notice-color">剩余4天12时41分</p>
+              </div>
             </div>
           </div>
         </div>
+      </v-product-item>
+      <p class="profit-about">预期收益简述</p>
+      <p class="profit-desc">每<span class="high">万元</span>预期投资收益<span class="high">{{deal.everyIncome}}</span>元</p>
+      <v-division></v-division>
+      <nav class="project-info">
+        <a class="project-info-title" :class="{current: currentView==='project'}" v-tap="{methods: toProject}">项目信息</a>
+        <a class="project-info-title" :class="{current: currentView==='secure'}" v-tap="{methods: toSecure}">保障方信息</a>
+        <a class="project-info-title" :class="{current: currentView==='record'}" v-tap="{methods: toRecord}">投资记录</a>
+      </nav>
+      <component :is="currentView" :deal="deal" @refresh="refresh"></component>
+      <div class="warn">
+        <div class="line"></div>
+        <p class="text">市场有风险, 投资需谨慎</p>
+        <div class="line"></div>
       </div>
-    </v-product-item>
-    <p class="profit-about">预期收益简述</p>
-    <p class="profit-desc">每<span class="high">万元</span>预期投资收益<span class="high">950</span>元</p>
-    <v-division></v-division>
-    <nav class="project-info">
-      <router-link class="project-info-title" to="/item">项目信息</router-link>
-      <router-link class="project-info-title" to="">保障方信息</router-link>
-      <router-link class="project-info-title" to="">投资记录</router-link>
-    </nav>
+    </div>
     <v-footer>
        <div class="bar-btn-wrapper">
         <div class="bar-btn">
@@ -45,15 +53,54 @@
   </div>
 </template>
 <script>
+  import util from 'util'
+  import secure from './components/secure.vue'
+  import project from './components/project.vue'
+  import record from './components/record.vue'
+
   export default {
     created () {
       //请求数据
-      console.log(this.$route.query)
+      var query = this.$route.query
+      util.post('/deal/detail', {dealid: query.dealid}, (data) => {
+        this.deal = JSON.parse(data).deal
+      })
+    },
+    data () {
+      return {
+        deal: {},
+        currentView: 'project',
+        bug: 1,
+        scrollOpt: {
+          bounce: false
+        },
+        scroll: {}
+      }
     },
     methods: {
       back () {
         this.$router.go(-1)
+      },
+      toProject () {
+        this.currentView = 'project'
+      },
+      toSecure () {
+        this.currentView = 'secure'
+      },
+      toRecord () {
+        this.currentView = 'record'
+      },
+      scrollFn (scroll) {
+        this.scroll = scroll
+      },
+      refresh () {
+        this.scroll.refresh()
       }
+    },
+    components: {
+      secure,
+      project,
+      record
     }
   }
 </script>
@@ -64,6 +111,12 @@
   }
   .detail {
     font-size: (32rem/20)
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    bottom: (150rem/20)
+    overflow: hidden
     .item {
       display: flex
       padding-left: (30rem/20)
@@ -175,5 +228,31 @@
       border-radius: (10rem/20)
       background-color: #ee4634
     }
+  }
+  .project-info {
+    border-bottom: (3rem/20) solid #e6e6e6
+  }
+  .current {
+    border-bottom: (6rem/20) solid #ee4634
+    color: #ee4634
+  }
+  .warn {
+    display: flex
+    height: (180rem/20)
+    justify-content: center
+    align-items: center
+    background-color: #f5f5fa
+    .line {
+      width: (90rem/20)
+      border-bottom: (3rem/20) solid #e7e7e8
+    }
+    .text {
+      margin: 0 (48rem/20)
+      font-size: (36rem/20)
+      color: #dcdcdc
+    }
+  }
+  .bug {
+    display: none
   }
 </style>

@@ -6,6 +6,7 @@ import router from './router'
 import vscroll from './directive/v-scroll.js'
 import components from './components/index'
 import vueTap from 'v-tap';
+import store from './store/index'
 
 Vue.use(vscroll)
 Vue.use(vueTap);

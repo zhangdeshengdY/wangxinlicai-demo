@@ -32,6 +32,7 @@
       flex: 1
       line-height: (135rem/20)
       text-align: center
+      font-size: (54rem/20)
     }
     .item {
       width: (200rem/20)

@@ -2,11 +2,11 @@
   <div class="register-wrapper">
     <div class="register">
       <v-bar title="注册">
-        <div slot="left" class="item" v-tap="{methods: back}">
+        <div slot="left" class="item text" v-tap="{methods: back}">
           <i class="icon"></i>
           <span class="text">返回</span>
         </div>
-        <div class="item notice" slot="right" v-tap="{methods: go}">
+        <div class="item notice text" slot="right" v-tap="{methods: go}">
           立即登录
         </div>
       </v-bar>
@@ -60,14 +60,14 @@
       padding-left: (30rem/20)
       .icon {
         align-self: center
-        width: 27px
-        height: 51px
+        width: (27rem/20)
+        height: (51rem/20)
         background-position: 0 (-343rem/20)
       }
       .text {
         align-self: center
         padding-left: (17rem/20)
-        font-size: 44px
+        font-size: (44rem/20)
       }
       .login {
         color: #5ca9e4
@@ -75,6 +75,7 @@
     }
     .notice {
       color: #5ca9e4
+      font-size: (44rem/20)
     }
     .welcome-banner {
       height: (532rem/20)
@@ -108,7 +109,7 @@
         display: block
         width: 100%
         line-height: (114rem/20)
-        font-size: 54px
+        font-size: (54rem/20)
         font-weight: 700
         background-color: #ee4634
         color: #fff

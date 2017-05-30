@@ -2,17 +2,17 @@
   <div class="product-item">
     <div class="product-item">
       <header class="title">
-        <div class="tag">初夏特惠标</div>
-        <div class="kind">盈嘉A10666</div>
+        <div class="tag">{{deal.tag}}</div>
+        <div class="kind">{{deal.productId}}</div>
       </header>
       <div class="key-info">
         <div class="info-item predict">
           <p class="desc">预期年化</p>
-          <p class="num num-size">9.50%</p>
+          <p class="num num-size">{{deal.income}}</p>
         </div>
         <div class="info-item term">
           <p class="desc">期限</p>
-          <p class="num"><span class="num-size">12</span>个月</p>
+          <p class="num"><span class="num-size">{{deal.term}}</span>个月</p>
         </div>
         <div class="buy-btn">
           <router-link to="/buy" class="buy-btn-link">投资</router-link>
@@ -23,25 +23,51 @@
       </div>
       <div class="attach">
         <div class="attach-item">
-          100元起
+          {{deal.threshold}}元起
         </div>
         <div class="attach-item">
-          按月支付收益还本
+          {{deal.type|dealType}}
         </div>
         <div class="attach-item">
-          剩55,636,53元
+          剩{{deal.remain}}元
         </div>
       </div>
       <slot name="link">
-        <router-link to="deal/detail?dealid=123" class="detail-link"></router-link>
+        <router-link 
+          :to="'/deal/detail?dealid='+deal.dealid" 
+          class="detail-link">
+        </router-link>
       </slot>
       <slot name="item-attach"></slot>
     </div>
   </div>
 </template>
 <script>
+  const TYPE1 = '到期支付本金收益'
+  const TYPE2 = '按月支付收益到期还本'
   export default {
-    
+    props: {
+      deal: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      }
+    },
+    filters: {
+      dealType (value) {
+        var type = ''
+        switch (Number(value)) {
+          case 0:
+            type = TYPE1
+            break
+          case 1:
+            type = TYPE2
+            break
+        }
+        return type
+      }
+    }
   }
 </script>
 <style lang="stylus" scoped>

@@ -1,28 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex' 
+import user from './user'
 Vue.use(Vuex)
-const LOGININ = 'LOGININ'
-const LOGINOUT = 'LOGINOUT'
+const LOGIN_IN = 'LOGIN_IN'
+const LOGIN_OUT = 'LOGIN_OUT'
+/**
+ * user = {
+ *   token: 2352132,
+ *   hasBindCard: false,
+ *   loginCount: 1,
+ *   
+ *   
+ * }
+ */
 export default new Vuex.Store({
   state: {
-    user: localStorage.getItem('user') || {},
+    aimRoute: {}
   },
-  mutations: {
-    [LOGININ] (state, {user}) {
-      state.user = user
-      localStorage.setItem('user')
-    },
-    [LOGINOUT] (state) {
-      state.user = {}
-      localStorage.clear()
-    }
-  },
-  actions: {
-    [LOGININ] ({commit}) {
-      commit(LOGININ)
-    },
-    [LOGININ] ({commit}) {
-      commit(LOGINOUT)
-    }
+  modules: {
+    user
   }
 })

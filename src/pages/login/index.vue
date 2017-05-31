@@ -1,35 +1,87 @@
 <template>
   <div class="login">
     <v-bar title="登录" class="bar">
-      <div slot="left" class="item text" v-tap="{methods: back}">
-        <i class="icon"></i>
-        <span class="text">返回</span>
-      </div>
+      <v-back slot="left"></v-back>
     </v-bar>
     <div class="welcome-banner"></div>
-    <div class="login-content p45" @touchstart.stop="">
+    <div class="login-content p45">
         <div class="login-tip">
           没有帐号?
           <router-link to="/register" class="register-link" >立即注册</router-link>
         </div>
         <div class="info-box">
-          <input type="text" class="user-name info-item" placeholder="手机号" name="user">
-          <input type="password" class="password info-item" placeholder="登录密码" name="password">
+          <div class="input-item user-name">
+            <input type="text" class="info-item" placeholder="帐号" name="user" 
+              v-tap="{methods: input}"
+              v-model="account"
+            >
+          </div>
+          <div class="input-item">
+            <input type="password" class="info-item" placeholder="登录密码" name="password" 
+              v-tap="{methods: input}"
+              v-model="password"
+            >
+          </div>
         </div>
-        <button class="submit disable-submit">登录</button>
+        <button class="submit" 
+         :class="{disablesubmit: !submitable}" 
+         v-tap="{methods: submit}"
+        >登录</button>
         <p class="forget-link">忘记密码？</p>
     </div>
   </div>
 </template>
 <script>
+  import util from 'util'
+  import {mapActions} from 'vuex'
+  import {mapState} from 'vuex'
+  import {LOGIN_IN} from 'user'
   export default {
-    methods: {
-      back () {
-        this.$router.go(-1)
+    data () {
+      return {
+        account: '',
+        password: ''
       }
     },
     methods: {
-      
+      ...mapActions([LOGIN_IN]),
+      back () {
+        this.$router.go(-1)
+      },
+      input (e) {
+        e.event.target.focus()
+      },
+      submit () {
+        if (this.submitable) {
+          util.post('/api/user/login', {
+            account: this.account,
+            password: this.password
+          }, (res) => {
+            var user = JSON.parse(res).resData
+            this.LOGIN_IN(user)
+            if(user.hasBindCard){
+              this.$router.push(this.aimRoute)
+            }else {
+              this.$router.go(-1)
+            }
+            console.log(this.$route)
+          }, (err) => {
+            console.log(err)
+          })
+        }
+      }
+    },
+    computed: {
+      ...mapState([
+        'aimRoute'
+      ]),
+      submitable () {
+        if(this.account.trim() && this.password.trim()){
+          return true
+        }else {
+          return false
+        }
+      }
     }
   }
 </script>
@@ -77,15 +129,20 @@
          border: (3rem/20) solid #dbdbdb
          border-radius: (14rem/20)
          overflow: hidden
-         .info-item {
-           display: block
-           width: 100%
+         .input-item {
+           display: flex
            height: (132rem/20)
-           padding-left: (56rem/20)
-           line-height: (132rem/20)
-           font-size: (42rem/20)
            color: #a9a9a9
-           outline: none
+           .info-item {
+             align-self: center
+             display: block
+             width: 100%
+             height: (60rem/20)
+             padding-left: (56rem/20)
+             line-height: (60rem/20)
+             font-size: (42rem/20)
+             outline: none
+           }
          }
          .user-name {
            border-bottom: (3rem/20) solid #dbdbdb
@@ -101,7 +158,7 @@
           background-color: #ee4634
           color: #fff
         }
-        .disable-submit {
+        .disablesubmit {
           background-color: #f9aeac
           color: #f8d2d2
         }

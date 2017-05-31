@@ -1,39 +1,34 @@
 <template>
   <div class="my">
-     <v-bar title="用户详情">
-      <div slot="left" class="item" v-tap="{methods: back}">
-        <i class="icon"></i>
-        <span class="text">返回</span>
-      </div>
+    <v-bar title="用户详情">
+     <v-back slot="left"></v-back>
     </v-bar>
-    等待开发中
+    <div class="my-content" v-tap="{methods: loginout}">
+      点击退出登录
+    </div>
   </div>
 </template>
 <script>
+  import {mapActions} from 'vuex'
+  import {LOGIN_OUT} from 'user'
   export default {
     methods: {
+      ...mapActions([
+        LOGIN_OUT
+      ]),
       back () {
         this.$router.go(-1)
+      },
+      loginout () {
+        this.LOGIN_OUT()
+        this.$router.push('/')
       }
     }
   }
 </script>
 <style lang="stylus" scoped>
-  .my {
-    .item {
-      display: flex
-      padding-left: (30rem/20)
-      .icon {
-        align-self: center
-        width: 27px
-        height: 51px
-        background-position: 0 (-343rem/20)
-      }
-      .text {
-        align-self: center
-        padding-left: (17rem/20)
-        font-size: 44px
-      }
-    }
+  .my-content {
+    text-align: center
+    font-size: (56rem/20)
   }
 </style>

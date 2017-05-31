@@ -6,6 +6,10 @@ import Register from '../pages/register/index'
 import Detail from '../pages/detail/index'
 import My from '../pages/my/index'
 import List from '../pages/list/index'
+import Card from '../pages/card/index'
+import Start from '../pages/card/start'
+import Buy from '../pages/buy/index'
+
 Vue.use(Router)
 
 //auth=true 为登录才能进入组件 ,auth=false为不需要登录就能进入的组件
@@ -41,6 +45,22 @@ export default new Router({
       path: '/list',
       meta: {auth: false},
       component: List
+    },
+    {
+      path: '/buy',
+      meta: {auth: true},
+      component: Buy
+    },
+    {
+      path: '/card',
+      meta: {auth: true},
+      component: Card,
+      children: [
+        {
+          path:'start',
+          component: Start
+        }
+      ]
     }
   ]
 })

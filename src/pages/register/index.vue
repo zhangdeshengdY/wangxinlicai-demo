@@ -1,5 +1,5 @@
 <template>
-  <div class="register-wrapper">
+  <div class="register-wrapper" v-scroll="{opts: scrollOpt}">
     <div class="register">
       <v-bar title="注册">
         <div slot="left" class="item text" v-tap="{methods: back}">
@@ -13,11 +13,24 @@
       <div class="welcome-banner"></div>
       <div class="register-box">
         <div class="info-box">
-          <input type="text" class="user-name info-item" placeholder="手机号" name="user">
-          <input type="password" class="password info-item" placeholder="登录密码" name="password">
+          <div class="input-item user-name">
+            <input type="text" class="info-item" placeholder="帐号" name="user" 
+              v-tap="{methods: input}"
+              v-model="account"
+            >
+          </div>
+          <div class="input-item">
+            <input type="password" class="info-item" placeholder="登录密码" name="password" 
+              v-tap="{methods: input}"
+              v-model="password"
+            >
+          </div>
         </div>
         <p class="register-protocal" v-tap="{methods: showProtocal}">我同意<span>注册协议</span></p>
-        <button class="submit disable-submit">注册</button>
+        <button class="submit" 
+          :class="{disablesubmit: !submitable}" 
+          v-tap="{methods: submit}"
+        >注册</button>
       </div>
       <div class="register-tips">
         <img src="./imgs/register-tips.png" alt="">
@@ -32,7 +45,12 @@
   export default {
     data () {
       return {
-        show: false
+        show: false,
+        account: '',
+        password: '',
+        scrollOpt: {
+          bounce: false
+        }
       }
     },
     methods: {
@@ -44,17 +62,33 @@
       },
       showProtocal () {
         this.show = true
+      },
+      input (e) {
+        e.event.target.focus()
+      },
+      submit () {
+
+      }
+    },
+    computed: {
+      submitable () {
+        if(this.account.trim() && this.password.trim()){
+          return true
+        }else {
+          return false
+        }
       }
     }
   }
 </script>
 <style lang="stylus" scoped>
-  .register {
+  .register-wrapper {
     position: absolute
     left: 0
     top: 0
     bottom: 0
     right: 0
+    overflow: hidden
     .item {
       display: flex
       padding-left: (30rem/20)
@@ -90,21 +124,25 @@
         border: (3rem/20) solid #dbdbdb
         border-radius: (14rem/20)
         overflow: hidden
-        .info-item {
-          display: block
-          width: 100%
+        .input-item {
+          display: flex
           height: (132rem/20)
-          padding-left: (56rem/20)
-          line-height: (132rem/20)
-          font-size: (42rem/20)
           color: #a9a9a9
-          outline: none
+          .info-item {
+            align-self: center
+            display: block
+            width: 100%
+            height: (60rem/20)
+            padding-left: (56rem/20)
+            line-height: (60rem/20)
+            font-size: (42rem/20)
+            outline: none
+          }
         }
-        .user-name {
-          border-bottom: (3rem/20) solid #dbdbdb
-        }
-        
-      }
+         .user-name {
+           border-bottom: (3rem/20) solid #dbdbdb
+         }
+       }
       .submit {
         display: block
         width: 100%
@@ -114,7 +152,7 @@
         background-color: #ee4634
         color: #fff
       }
-      .disable-submit {
+      .disablesubmit {
         color: #f8d2d2
       }
       .register-protocal {

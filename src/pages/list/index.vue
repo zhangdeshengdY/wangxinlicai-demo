@@ -6,6 +6,7 @@
         <ul class="list-content">
           <li class="list-item" v-for="deal in deals">
             <v-product-item :deal="deal"></v-product-item>
+            <v-division></v-division>
           </li>
         </ul>
       </div>

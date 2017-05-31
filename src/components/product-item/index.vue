@@ -32,11 +32,9 @@
           剩{{deal.remain}}元
         </div>
       </div>
-      <slot name="link">
-        <router-link 
-          :to="'/deal/detail?dealid='+deal.dealid" 
-          class="detail-link">
-        </router-link>
+        <a v-tap="{methods: toDetail}" class="detail-link">
+
+        </a>
       </slot>
       <slot name="item-attach"></slot>
     </div>
@@ -52,6 +50,11 @@
         default: () => {
           return {}
         }
+      }
+    },
+    methods: {
+      toDetail () {
+        this.$router.push('/deal/detail?dealid='+this.deal.dealid)
       }
     },
     filters: {
@@ -119,6 +122,8 @@
       }
       .buy-btn-link {
         display: inline-block
+        z-index: 20
+        position: relative
         width: (216rem/20)
         height: (84rem/20)
         line-height: (84rem/20)

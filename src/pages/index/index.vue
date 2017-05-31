@@ -7,7 +7,7 @@
       <v-header></v-header>
       <v-content>
         <v-slide></v-slide>
-        <nav class="top-nav">
+        <nav class="top-nav" v-if="!isLogin">
           <router-link class="register nav-item" to="/register">
             <i class="icon"></i>
             <span class="text">注册</span>
@@ -17,7 +17,7 @@
             <span class="text">登录</span>
           </router-link>
         </nav>
-        <v-division></v-division>
+        <v-division v-if="!isLogin"></v-division>
         <div class="list-container">
           <header class="list-container-title">专享</header>
           <!--<product-list></product-list>-->
@@ -122,8 +122,8 @@
     },
     computed: {
       ...mapState({
-        user: (state) => {
-          return state.user
+        isLogin: (state) => {
+          return !!state.user.user.account
         }
       })
     }

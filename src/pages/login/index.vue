@@ -7,7 +7,7 @@
     <div class="login-content p45">
         <div class="login-tip">
           没有帐号?
-          <router-link to="/register" class="register-link" >立即注册</router-link>
+          <a class="register-link" v-tap="{methods: toRegister}">立即注册</a>
         </div>
         <div class="info-box">
           <div class="input-item user-name">
@@ -69,6 +69,9 @@
             console.log(err)
           })
         }
+      },
+      toRegister () {
+        this.$router.push('/register')
       }
     },
     computed: {

@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><title>wangxinlicai-demo</title><script>//适配
+        document.addEventListener('DOMContentLoaded', function (){
+            var viewportEl = document.createElement('meta'),
+                scale = 1/window.devicePixelRatio,
+                meta = document.head.querySelector('meta')
+
+            viewportEl.name = "viewport";
+            viewportEl.content = "width=device-width, initial-scale="+ scale +", maximum-scale="+ scale +", minimum-scale="+ scale +", user-scalable=no";
+            document.head.insertBefore(viewportEl, meta);
+
+            var h = window.innerWidth;
+            document.documentElement.style.fontSize = h/62.1 + 'px';
+        })
+         //  阻止浏览器默认行为
+        document.addEventListener('touchstart',function (ev){
+            ev.preventDefault()
+        })</script><link href=/static/css/app.87d43608798dc9407510c9e09bfbb70c.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.c5f4fc794eea636529e3.js></script><script type=text/javascript src=/static/js/vendor.664e4a1828bae0b8b5d9.js></script><script type=text/javascript src=/static/js/app.c6ef2804be504cd21e17.js></script></body></html>

@@ -7,4 +7,5 @@ import ProductItem from './product-item/index'
 import Division from './other/division'
 import Pop from './pop/index'
 import Back from './back/index'
-export default {Bar, Header, Footer, Content, Slide, ProductItem, Division, Pop, Back}
+import Submit from './submit/index'
+export default {Bar, Header, Footer, Content, Slide, ProductItem, Division, Pop, Back, Submit}

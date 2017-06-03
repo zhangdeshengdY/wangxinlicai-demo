@@ -62,9 +62,8 @@
             if(user.hasBindCard){
               this.$router.push(this.aimRoute)
             }else {
-              this.$router.go(-1)
+              this.$router.push('/card/start')
             }
-            console.log(this.$route)
           }, (err) => {
             console.log(err)
           })

@@ -70,6 +70,20 @@ apiRouter.post('/user/register', function (req, res) {
   
 })
 
+apiRouter.post('/validate/card', function (req, res) {
+  // Object.keys(res.body).forEach( k => {
+  //   if(!res.body[k].trim()){
+  //     return res.json({
+  //       status: 1,
+  //       message: '银行卡号或者身份证号不能为空'
+  //     })
+  //   }
+  // })
+  res.json({
+    status: 0,
+    message: '验证成功'
+  })
+})
 
 
 

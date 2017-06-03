@@ -1,5 +1,5 @@
 <template>
-  <div class="bar">
+  <div class="bar" :style="bgObj">
     <slot name="left">
       <div class="item"></div>
     </slot>
@@ -15,6 +15,17 @@
       title: {
         type: String,
         default: ''
+      },
+      bg: {
+        type: String,
+        default: '#fff'
+      }
+    },
+    computed: {
+      bgObj () {
+        return {
+          background: this.bg
+        }
       }
     }
   }

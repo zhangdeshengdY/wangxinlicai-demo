@@ -1,11 +1,12 @@
 <template>
   <div class="my">
-    <v-bar title="用户详情">
-     <v-back slot="left"></v-back>
+    <v-bar title="个人详情">
+      <div class="set item" slot="right">设置</div>
     </v-bar>
     <div class="my-content" v-tap="{methods: loginout}">
       点击退出登录
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 <script>
@@ -30,5 +31,8 @@
   .my-content {
     text-align: center
     font-size: (56rem/20)
+  }
+  .set {
+    text-align: center
   }
 </style>

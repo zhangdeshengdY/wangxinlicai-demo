@@ -8,6 +8,8 @@ import My from '../pages/my/index'
 import List from '../pages/list/index'
 import Card from '../pages/card/index'
 import Start from '../pages/card/start'
+import Quick from '../pages/card/quick'
+import Success from '../pages/card/success'
 import Buy from '../pages/buy/index'
 
 Vue.use(Router)
@@ -59,6 +61,14 @@ export default new Router({
         {
           path:'start',
           component: Start
+        },
+        {
+          path: 'quick',
+          component: Quick
+        },
+        {
+          path: 'success',
+          component: Success
         }
       ]
     }
